@@ -1,0 +1,21 @@
+<!-- templates/eda.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 在您的 HTML 模板的 <head> 部分包含 Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <title>EDA Visualizations</title>
+</head>
+
+<body>
+    <div>
+        <a href="/eva"><button>Go to Evaluation</button></a>
+        <a href="/"><button>Go to home page</button></a>
+    </div>
+    <h1>Exploratory Data Analysis</h1>
+    <!-- 插入 EDA 的图表 -->
+    {{ eda_plots_html|safe }}
+</body>
+</html>

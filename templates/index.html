@@ -1,0 +1,37 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        .predictions {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .predictions td, .predictions th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        .predictions tr:nth-child(even){background-color: #f2f2f2;}
+        .predictions tr:hover {background-color: #ddd;}
+        .predictions th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the ML Visualization Tool</h1>
+    <h3>Predictions</h3>
+    {{ predictions_html|safe }}
+    <div>
+        <a href="/EDA"><button>Go to EDA</button></a>
+        <a href="/eva"><button>Go to Evaluation</button></a>
+        <a href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million#/"><button>Go to Euromillions</button></a>
+    </div>
+</body>
+</html>
