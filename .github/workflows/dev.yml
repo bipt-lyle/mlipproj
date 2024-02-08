@@ -38,11 +38,11 @@ jobs:
     
         
     - name: Build and push Docker image
-      
       uses: docker/build-push-action@v2
       with:
+        context: .
         push: true
-        tags: liuyingda7701/mlip-app:${{ github.ref_name }}-latest
+        tags: liuyingda7701/mlip-app:${{ github.ref_name }}-V1
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
