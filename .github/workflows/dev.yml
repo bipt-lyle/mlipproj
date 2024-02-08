@@ -27,19 +27,19 @@ jobs:
 
     - name: Process Data
       run: python data.py
-      if: github.ref == 'refs/heads/main'
+      
 
     - name: Train Model
       run: python model.py
-      if: github.ref == 'refs/heads/main'
+      
 
     - name: Make Predictions
       run: python predict.py
-      if: github.ref == 'refs/heads/main'
+      
 
         
     - name: Build and push Docker image
-      if: github.ref == 'refs/heads/main'
+      
       uses: docker/build-push-action@v2
       with:
         push: true
