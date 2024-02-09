@@ -1,0 +1,37 @@
+name: Data Pipeline Workflow
+
+on:
+  schedule:
+    # 每天UTC时间00:00运行，您可以根据需要调整时间
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - dev
+      - staging
+      - main
+jobs:
+  data_processing_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+      
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+      
+    - name: Run data processing script
+      run: python data.py
+
+    # 添加额外的步骤，如果您想自动提交和推送新的数据文件到仓库
+    - name: Commit and push if changes
+      run: |
+        git config --global user.email "2645385939@qq.com"
+        git config --global user.name "bipt-lyle"
+        git add data/ data_for_model/
+        git commit -m "Automated data update" || echo "No changes to commit"
+        git push

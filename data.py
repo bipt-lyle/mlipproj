@@ -23,8 +23,3 @@ if __name__ == "__main__":
 
     df.to_csv('data_for_model/data.csv', index=False)
     transformed_df.to_csv('data_for_model/transformed_data.csv', index=False)
-
-
-
-
-
