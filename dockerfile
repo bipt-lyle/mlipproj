@@ -8,10 +8,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # 设置工作目录为 /app
-WORKDIR /app
+WORKDIR /code
 
 # 将当前目录内容复制到容器中的 /app
-COPY . /app
+COPY . /code
 
 # 安装 requirements.txt 中的所有 Python 依赖
 RUN pip install --no-cache-dir -r requirements.txt
