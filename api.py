@@ -376,6 +376,9 @@ def evaluate_predict_plots():
     print(predictions)
     return plots_divs, metrics,predictions_html
 
+def configure_mlflow(experiment_name="EuroMillions Prediction", tracking_uri="http://127.0.0.1:8080"):
+    mlflow.set_tracking_uri(tracking_uri)
+    mlflow.set_experiment(experiment_name)
 
 def train_test_data(df,transformed_df):
     number_of_rows = df.values.shape[0]
