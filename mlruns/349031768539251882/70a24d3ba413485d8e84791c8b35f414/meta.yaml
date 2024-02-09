@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/70a24d3ba413485d8e84791c8b35f414/artifacts
+end_time: 1707448520794
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 70a24d3ba413485d8e84791c8b35f414
+run_name: suave-grub-851
+run_uuid: 70a24d3ba413485d8e84791c8b35f414
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707448517079
+status: 3
+tags: []
+user_id: dantashashou

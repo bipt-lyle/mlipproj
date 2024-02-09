@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/7db3458f7a3444c6a10df6623ec3537a/artifacts
+end_time: 1707451784272
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 7db3458f7a3444c6a10df6623ec3537a
+run_name: auspicious-gnu-788
+run_uuid: 7db3458f7a3444c6a10df6623ec3537a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707451766635
+status: 3
+tags: []
+user_id: dantashashou
