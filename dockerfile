@@ -17,4 +17,5 @@ COPY . /code
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 在容器启动时运行 app.py
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "app:app"]
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
+
