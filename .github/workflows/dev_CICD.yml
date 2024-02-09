@@ -1,8 +1,11 @@
 name: ML Pipeline Workflow
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches:
+      - staging
+      - main
+      - dev
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
