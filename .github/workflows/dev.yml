@@ -5,7 +5,7 @@ on:
     branches:
       - staging
       - main
-
+      - dev
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
@@ -24,14 +24,6 @@ jobs:
     - name: Run tests
       run: pytest
 
-    - name: Process Data
-      run: python data.py
-      
-
-    - name: Train Model
-      run: python model.py
-      
-
     - name: Make Predictions
       run: python predict.py
     
@@ -46,4 +38,17 @@ jobs:
       with:
         push: true
         tags: liuyingda7701/mlip-app:${{ github.ref_name }}-latest
-      
+
+        
+    - name: Push Docker image to Heroku Container Registry
+      run: |
+        heroku container:login
+        docker tag liuyingda7701/mlip-app:${{ github.ref_name }}-latest registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+        docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+    - name: Release Docker image to Heroku
+      run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}

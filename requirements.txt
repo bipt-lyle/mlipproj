@@ -8,3 +8,4 @@ tensorflow
 keras
 pytest
 flask
+gunicorn
