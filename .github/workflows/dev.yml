@@ -27,8 +27,38 @@ jobs:
       - name: Run tests
         run: pytest
 
-  make-predictions:
+  Run-data-processing-in-Docker:
     needs: setup-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Make Predictions
+        run: python data.py
+
+  Model-make:
+    needs: Run-data-processing-in-Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Make Predictions
+        run: python model.py
+
+  make-predictions:
+    needs: Model-make
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -62,15 +92,15 @@ jobs:
           push: true
           tags: liuyingda7701/mlip-app:${{ github.ref_name }}-latest
 
-      - name: Push Docker image to Heroku Container Registry
-        run: |
-          heroku container:login
-          docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
-          docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      # - name: Push Docker image to Heroku Container Registry
+      #   run: |
+      #     heroku container:login
+      #     docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
+      #     docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
-      - name: Release Docker image to Heroku
-        run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      # - name: Release Docker image to Heroku
+      #   run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
