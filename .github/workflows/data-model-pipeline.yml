@@ -3,11 +3,7 @@ name: Data Pipeline Workflow
 on:
   schedule:
     - cron: '0 0 * * *'
-  push:
-    branches:
-      - dev
-      - staging
-      - main
+
 permissions:
   contents: write
   actions: write
