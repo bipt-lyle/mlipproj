@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/7c87d8e84c9845b6a9037518bc1db419/artifacts
+end_time: 1707436960961
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7c87d8e84c9845b6a9037518bc1db419
+run_name: rebellious-croc-645
+run_uuid: 7c87d8e84c9845b6a9037518bc1db419
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707436960002
+status: 3
+tags: []
+user_id: dantashashou

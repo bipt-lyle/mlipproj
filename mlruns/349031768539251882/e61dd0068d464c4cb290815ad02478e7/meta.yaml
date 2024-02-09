@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/e61dd0068d464c4cb290815ad02478e7/artifacts
+end_time: 1707450777249
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: e61dd0068d464c4cb290815ad02478e7
+run_name: stylish-frog-124
+run_uuid: e61dd0068d464c4cb290815ad02478e7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707450776668
+status: 4
+tags: []
+user_id: dantashashou

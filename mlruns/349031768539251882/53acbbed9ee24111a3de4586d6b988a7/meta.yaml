@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/53acbbed9ee24111a3de4586d6b988a7/artifacts
+end_time: 1707448014584
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 53acbbed9ee24111a3de4586d6b988a7
+run_name: brawny-stoat-587
+run_uuid: 53acbbed9ee24111a3de4586d6b988a7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707448013878
+status: 3
+tags: []
+user_id: dantashashou

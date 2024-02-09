@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/f913a4f4fdfb492fb73dfff60a411526/artifacts
+end_time: 1707451737912
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: f913a4f4fdfb492fb73dfff60a411526
+run_name: bemused-pug-341
+run_uuid: f913a4f4fdfb492fb73dfff60a411526
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707451718558
+status: 4
+tags: []
+user_id: dantashashou

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/4fd90d33e1da4ce7a498828d819f00bb/artifacts
+end_time: 1707437046956
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4fd90d33e1da4ce7a498828d819f00bb
+run_name: welcoming-grub-979
+run_uuid: 4fd90d33e1da4ce7a498828d819f00bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707437046108
+status: 3
+tags: []
+user_id: dantashashou

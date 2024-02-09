@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/b4af15a435b040db8ec35c21aba95768/artifacts
+end_time: 1707450837640
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: b4af15a435b040db8ec35c21aba95768
+run_name: bald-sponge-20
+run_uuid: b4af15a435b040db8ec35c21aba95768
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707450819731
+status: 3
+tags: []
+user_id: dantashashou

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/bbf9b7c42d724976ac82b98eb4ab3371/artifacts
+end_time: 1707452781153
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: bbf9b7c42d724976ac82b98eb4ab3371
+run_name: traveling-boar-881
+run_uuid: bbf9b7c42d724976ac82b98eb4ab3371
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707452781033
+status: 4
+tags: []
+user_id: dantashashou

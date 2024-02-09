@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/107db867869f4c37997a1deeb58a8318/artifacts
+end_time: 1707448594348
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 107db867869f4c37997a1deeb58a8318
+run_name: tasteful-shark-71
+run_uuid: 107db867869f4c37997a1deeb58a8318
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707448592221
+status: 3
+tags: []
+user_id: dantashashou
