@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/d8a1d73e3faa4db3b1e622aadf408943/artifacts
+end_time: 1707439810612
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d8a1d73e3faa4db3b1e622aadf408943
+run_name: trusting-koi-657
+run_uuid: d8a1d73e3faa4db3b1e622aadf408943
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707439809745
+status: 3
+tags: []
+user_id: dantashashou

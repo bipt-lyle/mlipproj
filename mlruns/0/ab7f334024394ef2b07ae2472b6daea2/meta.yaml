@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/ab7f334024394ef2b07ae2472b6daea2/artifacts
+end_time: 1707439505879
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ab7f334024394ef2b07ae2472b6daea2
+run_name: gentle-smelt-128
+run_uuid: ab7f334024394ef2b07ae2472b6daea2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707439505114
+status: 3
+tags: []
+user_id: dantashashou

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/82e6231e03f844119564e6ea3aedb478/artifacts
+end_time: 1707438326447
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 82e6231e03f844119564e6ea3aedb478
+run_name: traveling-conch-786
+run_uuid: 82e6231e03f844119564e6ea3aedb478
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707438325551
+status: 3
+tags: []
+user_id: dantashashou

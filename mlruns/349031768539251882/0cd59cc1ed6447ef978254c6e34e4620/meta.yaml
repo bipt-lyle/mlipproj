@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/0cd59cc1ed6447ef978254c6e34e4620/artifacts
+end_time: 1707449217623
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 0cd59cc1ed6447ef978254c6e34e4620
+run_name: Model Prediction
+run_uuid: 0cd59cc1ed6447ef978254c6e34e4620
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707449212609
+status: 3
+tags: []
+user_id: dantashashou

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/ad865f466a024bdc8609c65d84d6c32e/artifacts
+end_time: 1707448016141
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: ad865f466a024bdc8609c65d84d6c32e
+run_name: industrious-auk-602
+run_uuid: ad865f466a024bdc8609c65d84d6c32e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707448015889
+status: 3
+tags: []
+user_id: dantashashou

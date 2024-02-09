@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/55bba2bde5c845de8862f7e96fe4d9b5/artifacts
+end_time: 1707453425196
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 55bba2bde5c845de8862f7e96fe4d9b5
+run_name: monumental-carp-193
+run_uuid: 55bba2bde5c845de8862f7e96fe4d9b5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707453400029
+status: 3
+tags: []
+user_id: dantashashou

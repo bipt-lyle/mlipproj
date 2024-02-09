@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/cdc0056c6c4749d9aa2628a676d3c7f3/artifacts
+end_time: 1707450305593
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: cdc0056c6c4749d9aa2628a676d3c7f3
+run_name: charming-steed-87
+run_uuid: cdc0056c6c4749d9aa2628a676d3c7f3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707450300868
+status: 3
+tags: []
+user_id: dantashashou

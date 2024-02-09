@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/94ab0eb2956244fe9406e2b0e95aa6d8/artifacts
+end_time: 1707451545533
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 94ab0eb2956244fe9406e2b0e95aa6d8
+run_name: classy-kit-311
+run_uuid: 94ab0eb2956244fe9406e2b0e95aa6d8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707451530599
+status: 3
+tags: []
+user_id: dantashashou

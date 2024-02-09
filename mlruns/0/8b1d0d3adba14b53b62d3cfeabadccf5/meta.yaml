@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/8b1d0d3adba14b53b62d3cfeabadccf5/artifacts
+end_time: 1707445460736
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8b1d0d3adba14b53b62d3cfeabadccf5
+run_name: unruly-mink-653
+run_uuid: 8b1d0d3adba14b53b62d3cfeabadccf5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707445459634
+status: 3
+tags: []
+user_id: dantashashou

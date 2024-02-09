@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/722a55fa22ba4d80811ecd80c66823b9/artifacts
+end_time: 1707446132967
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 722a55fa22ba4d80811ecd80c66823b9
+run_name: luxuriant-robin-664
+run_uuid: 722a55fa22ba4d80811ecd80c66823b9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707446130125
+status: 3
+tags: []
+user_id: dantashashou

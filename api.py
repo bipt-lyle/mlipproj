@@ -1,5 +1,3 @@
-# 1. 数据处理模块
-
 import pandas as pd
 import numpy as np
 import glob
@@ -15,6 +13,9 @@ from keras.layers import LSTM, Dense, Dropout
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import tensorflow as tf
+import mlflow
+from mlflow import keras as mlflow_keras
+
 
 def load_and_preprocess_data():
     # URL列表
@@ -233,6 +234,7 @@ def EDA_plots(df):
         
         most_frequent_numbers_per_year[ball] = most_frequent_numbers
     most_frequent_numbers_per_year.index = df['year'].unique()
+    
     # 绘制每年最频繁出现的数字的变化趋势
     plt.figure(figsize=(14, 7))
     for ball in most_frequent_numbers_per_year.columns:
@@ -266,7 +268,9 @@ def standard(df):
     transformed_df = pd.DataFrame(data=transformed_dataset, index=df.index)
     return df,transformed_dataset,transformed_df, scaler
 
-
+def configure_mlflow(experiment_name="EuroMillions Prediction", tracking_uri="http://127.0.0.1:8080"):
+    mlflow.set_tracking_uri(tracking_uri)
+    mlflow.set_experiment(experiment_name)
 
 def evaluate_predict_plots():
     from io import BytesIO
@@ -282,13 +286,17 @@ def evaluate_predict_plots():
     transformed_df = pd.read_csv(file2_path)
     
     train,label,test,test_label,val,val_label,number_of_features = train_test_data(df,transformed_df)
-
     model = load_model('model/euromillions.h5')
+    
+    mlflow.sklearn.log_model(model, "model")
+
+
     history_path = 'model/euromillions_history.pkl'
     with open(history_path, 'rb') as f:
         history = pickle.load(f)
     plots_divs = []
-#模型评估图：
+    
+    #模型评估图：
     plt.figure()
     plt.plot(history['loss'], label='Training Loss')
     plt.plot(history['val_loss'], label='Validation Loss')
@@ -362,6 +370,7 @@ def evaluate_predict_plots():
     plots_divs.append(html_img)
     #预测结果：
     predictions = make_predictions(df,scaler,model)
+    print(predictions)
     predictions_html = predictions.to_html(classes='predictions',index=False)
     save_plots_divs_to_file(plots_divs, 'evaluate_predict.html')
     return plots_divs, metrics,predictions_html
@@ -402,11 +411,12 @@ def train_test_data(df,transformed_df):
         val_label[i] = val_data.iloc[i+window_length:i+window_length+1, 0:number_of_features]
     return train,label,test,test_label,val,val_label,number_of_features
 
-
 def build_and_train_model(number_of_features,train,label,val,val_label):
     import os
     import pickle
+
     window_length = 5
+    epochs = 120
     if os.path.exists('model/euromillions.h5'):
         model = load_model('model/euromillions.h5')
         history_path = 'model/euromillions_history.pkl'
@@ -422,15 +432,21 @@ def build_and_train_model(number_of_features,train,label,val,val_label):
         model.add(LSTM(64, return_sequences=False))
         model.add(Dropout(0.2))
         model.add(Dense(number_of_features))
-        #模型编译和训练
+        
+        #模型编译
         model.compile(loss='mse', optimizer='rmsprop')
-        history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=120)
+
+        # 模型训练
+        history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=epochs)
+        
         # 保存模型
         model.save('model/euromillions.h5')
+
+        # 保存训练历史
         history_path = 'model/euromillions_history.pkl'
         with open(history_path, 'wb') as f:
             pickle.dump(history.history, f)
-        return model,history
+        # return model,history
     return model, history
 
 def evaluate_model(model, test, test_label, scaler):
@@ -439,28 +455,24 @@ def evaluate_model(model, test, test_label, scaler):
     
     # 将预测结果转换回原始比例
     predicted_output = scaler.inverse_transform(scaled_predicted_output).astype(int)
-    
     # 将测试标签转换回原始比例
     test_label_original = scaler.inverse_transform(test_label)
     
     # 计算MSE
     mse = mean_squared_error(test_label_original, predicted_output)
-    
     # 计算RMSE
     rmse = np.sqrt(mse)
-    
     # 计算MAE
     mae = mean_absolute_error(test_label_original, predicted_output)
-    
     # 计算R²
     r2 = r2_score(test_label_original, predicted_output)
-    
+
     return mse, rmse, mae, r2,test_label_original,predicted_output
 
 
 
 
-def make_predictions(df,scaler,model):
+def make_predictions(df,scaler,model):    
     # 预测部分
     to_predict = df.iloc[-5:]
     scaled_to_predict = scaler.transform(to_predict)
@@ -484,31 +496,29 @@ def save_plots_divs_to_file(plots_divs, filename):
     with open(file_path, 'w') as file:
         for div in plots_divs:
             file.write(div + '\n')
-def main():
 
+def main():
+    configure_mlflow()
+    mlflow.keras.autolog()
+    
     # Load and preprocess the data
     print('begin load')
     df= load_and_preprocess_data()
     print("begin data")
     df,transformed_dataset,transformed_df, scaler = standard(df)
+    
 
     train,label,test,test_label,val,val_label,number_of_features = train_test_data(df,transformed_df)
     print("build model")
 
-    model,history = build_and_train_model(number_of_features,train,label,val,val_label)
-
+    model, history = build_and_train_model(number_of_features, train, label, val, val_label)
+    mse, rmse, mae, r2, test_label_original, predicted_output = evaluate_model(model, test, test_label, scaler)
+    # 打印评估结果
     print("evaluate")
-
-    # Evaluate the model
-    mse, rmse, mae, r2,test_label_original,predicted_output = evaluate_model(model, test, test_label, scaler)
-    print(f"均方误差（MSE）: {mse}")
-    print(f"均方根误差（RMSE）: {rmse}")
-    print(f"平均绝对误差（MAE）: {mae}")
-    print(f"决定系数（R²）: {r2}")
+    print(f"MSE: {mse}, RMSE: {rmse}, MAE: {mae}, R2: {r2}")
 
     # Make predictions (assuming you have to_predict ready based on your code)
     predictions = make_predictions(df,scaler,model)
-
     # Print or use the predictions
     print(predictions)
 
