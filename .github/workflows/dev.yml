@@ -39,7 +39,7 @@ jobs:
         push: true
         tags: liuyingda7701/mlip-app:${{ github.ref_name }}-latest
 
-        
+
     - name: Push Docker image to Heroku Container Registry
       run: |
         heroku container:login
@@ -48,6 +48,7 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
+        
     - name: Release Docker image to Heroku
       run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
       env:
