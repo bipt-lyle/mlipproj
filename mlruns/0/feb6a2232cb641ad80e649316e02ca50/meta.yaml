@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/feb6a2232cb641ad80e649316e02ca50/artifacts
+end_time: 1707458849693
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: feb6a2232cb641ad80e649316e02ca50
+run_name: receptive-goose-26
+run_uuid: feb6a2232cb641ad80e649316e02ca50
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707458848980
+status: 3
+tags: []
+user_id: '33766'

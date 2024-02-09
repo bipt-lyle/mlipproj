@@ -291,17 +291,13 @@ def evaluate_predict_plots():
     transformed_df = pd.read_csv(file2_path)
     
     train,label,test,test_label,val,val_label,number_of_features = train_test_data(df,transformed_df)
+
     model = load_model('model/euromillions.h5')
-    
-    mlflow.sklearn.log_model(model, "model")
-
-
     history_path = 'model/euromillions_history.pkl'
     with open(history_path, 'rb') as f:
         history = pickle.load(f)
     plots_divs = []
-    
-    #模型评估图：
+#模型评估图：
     plt.figure()
     plt.plot(history['loss'], label='Training Loss')
     plt.plot(history['val_loss'], label='Validation Loss')
@@ -375,7 +371,6 @@ def evaluate_predict_plots():
     plots_divs.append(html_img)
     #预测结果：
     predictions = make_predictions(df,scaler,model)
-    print(predictions)
     predictions_html = predictions.to_html(classes='predictions',index=False)
     save_plots_divs_to_file(plots_divs, 'evaluate_predict.html')
     print(predictions)
@@ -423,36 +418,28 @@ def build_and_train_model(number_of_features,train,label,val,val_label):
 
     window_length = 5
     epochs = 120
-    if os.path.exists('model/euromillions.h5'):
-        model = load_model('model/euromillions.h5')
-        history_path = 'model/euromillions_history.pkl'
-        with open(history_path, 'rb') as f:
-            history = pickle.load(f)
+    model = Sequential()
+    model.add(LSTM(64, input_shape=(window_length, number_of_features), return_sequences=True))
+    model.add(Dropout(0.2))
+    # model.add(LSTM(64, return_sequences=True))
+    # model.add(Dropout(0.2))
+    model.add(LSTM(64, return_sequences=False))
+    model.add(Dropout(0.2))
+    model.add(Dense(number_of_features))
+    
+    #模型编译
+    model.compile(loss='mse', optimizer='rmsprop')
 
-    else:
-        model = Sequential()
-        model.add(LSTM(64, input_shape=(window_length, number_of_features), return_sequences=True))
-        model.add(Dropout(0.2))
-        # model.add(LSTM(64, return_sequences=True))
-        # model.add(Dropout(0.2))
-        model.add(LSTM(64, return_sequences=False))
-        model.add(Dropout(0.2))
-        model.add(Dense(number_of_features))
-        
-        #模型编译
-        model.compile(loss='mse', optimizer='rmsprop')
+    # 模型训练
+    history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=epochs)
+    
+    # 保存模型
+    model.save('model/euromillions.h5')
 
-        # 模型训练
-        history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=epochs)
-        
-        # 保存模型
-        model.save('model/euromillions.h5')
-
-        # 保存训练历史
-        history_path = 'model/euromillions_history.pkl'
-        with open(history_path, 'wb') as f:
-            pickle.dump(history.history, f)
-        # return model,history
+    # 保存训练历史
+    history_path = 'model/euromillions_history.pkl'
+    with open(history_path, 'wb') as f:
+        pickle.dump(history.history, f)
     return model, history
 
 def evaluate_model(model, test, test_label, scaler):
