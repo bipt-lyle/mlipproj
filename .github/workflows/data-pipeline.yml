@@ -2,13 +2,13 @@ name: Data Pipeline Workflow
 
 on:
   schedule:
-    # 每天UTC时间00:00运行，您可以根据需要调整时间
     - cron: '0 0 * * *'
   push:
     branches:
       - dev
       - staging
       - main
+
 jobs:
   data_processing_job:
     runs-on: ubuntu-latest
@@ -30,8 +30,8 @@ jobs:
     - name: Run data processing in Docker
       run: |
         docker run \
-        -v ${{ github.workspace }}/data:/app/data \
-        -v ${{ github.workspace }}/data_for_model:/app/data_for_model \
+        -v ${{ github.workspace }}/data:/code/data \
+        -v ${{ github.workspace }}/data_for_model:/code/data_for_model \
         myapp python data.py
 
     # 添加额外的步骤，如果您想自动提交和推送新的数据文件到仓库
@@ -41,7 +41,6 @@ jobs:
       run: |
         git config --global user.email "2645385939@qq.com"
         git config --global user.name "bipt-lyle"
-        git add data/ data_for_model/
+        git add .
         git commit -m "Automated data update" || echo "No changes to commit"
-        git push https://${{ env.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git dev
-
+        git push --force https://${{ env.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git dev
