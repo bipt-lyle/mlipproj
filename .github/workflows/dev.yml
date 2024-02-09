@@ -3,7 +3,6 @@ name: ML Pipeline Workflow
 on:
   push:
     branches:
-      - dev
       - staging
       - main
 

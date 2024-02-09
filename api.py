@@ -367,6 +367,7 @@ def evaluate_predict_plots():
     predictions = make_predictions(df,scaler,model)
     predictions_html = predictions.to_html(classes='predictions',index=False)
     save_plots_divs_to_file(plots_divs, 'evaluate_predict.html')
+    print(predictions)
     return plots_divs, metrics,predictions_html
 
 

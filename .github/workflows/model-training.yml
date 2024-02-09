@@ -1,0 +1,46 @@
+name: Model Training Workflow
+
+on:
+  workflow_run:
+    workflows: ["Data Pipeline Workflow"] 
+    types:
+      - completed
+    branches:
+      - dev
+
+jobs:
+  model_training_job:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+      
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Build Docker image for model training
+      run: docker build -t myapp-model .
+
+    - name: Run model training in Docker
+      run: |
+        docker run \
+        -v ${{ github.workspace }}/model:/code/model \
+        myapp-model python model.py
+
+    - name: Commit and push if changes in model directory
+      env:
+        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      run: |
+        git config --global user.email "2645385939@qq.com"
+        git config --global user.name "bipt-lyle"
+        git add model/
+        git commit -m "Update model files" || echo "No changes to model files"
+        git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git dev
