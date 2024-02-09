@@ -411,31 +411,23 @@ def build_and_train_model(number_of_features,train,label,val,val_label):
     import os
     import pickle
     window_length = 5
-    if os.path.exists('model/euromillions.h5'):
-        model = load_model('model/euromillions.h5')
-        history_path = 'model/euromillions_history.pkl'
-        with open(history_path, 'rb') as f:
-            history = pickle.load(f)
-
-    else:
-        model = Sequential()
-        model.add(LSTM(64, input_shape=(window_length, number_of_features), return_sequences=True))
-        model.add(Dropout(0.2))
-        # model.add(LSTM(64, return_sequences=True))
-        # model.add(Dropout(0.2))
-        model.add(LSTM(64, return_sequences=False))
-        model.add(Dropout(0.2))
-        model.add(Dense(number_of_features))
-        #模型编译和训练
-        model.compile(loss='mse', optimizer='rmsprop')
-        history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=120)
-        # 保存模型
-        model.save('model/euromillions.h5')
-        history_path = 'model/euromillions_history.pkl'
-        with open(history_path, 'wb') as f:
-            pickle.dump(history.history, f)
-        return model,history
-    return model, history
+    model = Sequential()
+    model.add(LSTM(64, input_shape=(window_length, number_of_features), return_sequences=True))
+    model.add(Dropout(0.2))
+    # model.add(LSTM(64, return_sequences=True))
+    # model.add(Dropout(0.2))
+    model.add(LSTM(64, return_sequences=False))
+    model.add(Dropout(0.2))
+    model.add(Dense(number_of_features))
+    #模型编译和训练
+    model.compile(loss='mse', optimizer='rmsprop')
+    history = model.fit(train, label, validation_data=(val, val_label), batch_size=64, epochs=120)
+    # 保存模型
+    model.save('model/euromillions.h5')
+    history_path = 'model/euromillions_history.pkl'
+    with open(history_path, 'wb') as f:
+        pickle.dump(history.history, f)
+    return model,history
 
 def evaluate_model(model, test, test_label, scaler):
     # 模型预测
