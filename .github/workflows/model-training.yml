@@ -1,14 +1,10 @@
 name: Model Training Workflow
 
 on:
-  workflow_run:
-    workflows: ["Data Pipeline Workflow"] 
-    types:
-      - completed
-    branches:
-      - dev
-  push:
-    branches:
+    schedule:
+      - cron: '0 0 * * *'
+    push:
+      branches:
         - dev
         - staging
         - main
@@ -16,7 +12,6 @@ on:
 jobs:
   model_training_job:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
     steps:
     - name: Check out the repo
       uses: actions/checkout@v2
