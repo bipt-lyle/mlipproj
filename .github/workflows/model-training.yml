@@ -7,6 +7,11 @@ on:
       - completed
     branches:
       - dev
+  push:
+    branches:
+        - dev
+        - staging
+        - main
 
 jobs:
   model_training_job:
