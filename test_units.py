@@ -15,8 +15,14 @@ def test_standard():
     assert scaler is not None, "Scaler object was not created."
 
 def test_make_predictions():
+    number_of_features = 7
+    window_length = 5
+    train_data = np.random.rand(100, window_length, number_of_features)
+    train_labels = np.random.rand(100, number_of_features)
+    validation_data = np.random.rand(20, window_length, number_of_features)
+    validation_labels = np.random.rand(20, number_of_features)
     df, _, _, scaler = standard(load_and_preprocess_data())
-    model = build_and_train_model(7, np.empty((0)), np.empty((0)), np.empty((0)), np.empty((0)))[0] # Assuming 7 features for simplicity
+    model, history = build_and_train_model(number_of_features, train_data, train_labels, validation_data, validation_labels)
     predictions = make_predictions(df, scaler, model)
     assert not predictions.empty, "No predictions were made."
 
