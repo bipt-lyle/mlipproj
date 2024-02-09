@@ -3,7 +3,11 @@ name: Model Training Workflow
 on:
     schedule:
       - cron: '0 0 * * *'
-
+    push:
+      branches:
+        - dev
+        - staging
+        - main
 
 jobs:
   model_training_job:
