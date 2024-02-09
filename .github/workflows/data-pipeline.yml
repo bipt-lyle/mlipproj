@@ -28,7 +28,11 @@ jobs:
       
     - name: Build Docker image
       run: docker build -t myapp .
-    
+
+    - name: Remove existing data
+      run: |
+        rm -rf data/*
+
     - name: Run data processing in Docker
       run: |
         docker run \
