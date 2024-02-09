@@ -34,4 +34,4 @@ jobs:
         git config --global user.name "bipt-lyle"
         git add data/ data_for_model/
         git commit -m "Automated data update" || echo "No changes to commit"
-        git push
+        git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git dev
