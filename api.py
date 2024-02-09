@@ -39,6 +39,11 @@ def load_and_preprocess_data():
     # 检查目标目录是否存在，如果不存在，则创建
     if not os.path.exists(save_path):
         os.makedirs(save_path)
+    else:
+        # 如果目录存在，删除目录下所有csv文件
+        for csv_file in glob.glob(os.path.join(save_path, '*.csv')):
+            os.remove(csv_file)
+            print(f"已删除文件：{csv_file}")
 
     # 下载并解压文件
     for url in urls:
