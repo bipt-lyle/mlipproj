@@ -10,4 +10,4 @@ pytest
 flask
 gunicorn
 mlflow
-
+requests
