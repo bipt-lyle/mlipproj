@@ -10,6 +10,12 @@ ENV PYTHONUNBUFFERED 1
 # 设置工作目录为 /app
 WORKDIR /code
 
+# Install any needed packages specified in requirements.txt
+# Update pip and install curl
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \
+    && pip install --upgrade pip
+
+
 # 将当前目录内容复制到容器中的 /app
 COPY . /code
 
