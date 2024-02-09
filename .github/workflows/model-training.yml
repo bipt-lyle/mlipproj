@@ -43,4 +43,4 @@ jobs:
         git config --global user.name "bipt-lyle"
         git add model/
         git commit -m "Update model files" || echo "No changes to model files"
-        git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git dev
+        git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git main
