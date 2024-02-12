@@ -33,5 +33,5 @@ def eva():
     plots_divs, metrics,predictions_html = evaluate_predict_plots()
     return render_template('evaluate_predict_page.html', metrics=metrics,plots_divs=plots_divs)
 
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=8000, debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000, debug=True)

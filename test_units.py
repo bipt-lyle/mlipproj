@@ -26,6 +26,5 @@ def test_make_predictions():
     predictions = make_predictions(df, scaler, model)
     assert not predictions.empty, "No predictions were made."
 
-
 if __name__ == '__main__':
     unittest.main()

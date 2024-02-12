@@ -3,11 +3,7 @@ name: Data Pipeline Workflow
 on:
   schedule:
     - cron: '0 0 * * *'
-  push:
-    branches:
-      - dev
-      - staging
-      - main
+
 permissions:
   contents: write
   actions: write
@@ -88,4 +84,15 @@ jobs:
         git commit -m "Update model files" || echo "No changes to model files"
         git push https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/bipt-lyle/mlipproj.git main
 
+    - name: Push Docker image to Heroku Container Registry
+      run: |
+        heroku container:login
+        docker build -t registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web .
+        docker push registry.heroku.com/${{ secrets.HEROKU_APP_NAME }}/web
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
+    - name: Release Docker image to Heroku
+      run: heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}

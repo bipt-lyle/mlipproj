@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/349031768539251882/5089dda514bd445b960c2c803258db83/artifacts
+end_time: 1707471573486
+entry_point_name: ''
+experiment_id: '349031768539251882'
+lifecycle_stage: active
+run_id: 5089dda514bd445b960c2c803258db83
+run_name: loud-gnat-214
+run_uuid: 5089dda514bd445b960c2c803258db83
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707471568999
+status: 3
+tags: []
+user_id: '33766'
