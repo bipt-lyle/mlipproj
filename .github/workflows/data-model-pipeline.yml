@@ -1,12 +1,6 @@
 name: Data Pipeline Workflow
 
-on:
-  schedule:
-    - cron: '0 0 * * *'
 
-permissions:
-  contents: write
-  actions: write
 
 jobs:
   data_processing_job:
