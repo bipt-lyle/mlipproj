@@ -1,0 +1,15 @@
+This is a description of the requirements of the final project of your Machine Learning in Production course.
+Attached is the document describing the project. Make sure to read it in addition to the description provided below.
+Below is the further description:
+
+You are to work in Teams of 2-3
+Your final goal is to produce a full pipeline of an ML-based application, complete with the automated integration, testing, and deployment pipelines of the code and Machine Learning Model, in addition to the ability to automate the data pipeline for future model training.
+All of your tasks and all what each member works on must be listed in a tasks manager like Trello. Start working on your tasks manager from the beginning of your work, and keep it updated for each task that is done.
+All of your code must be versioned using a version control like Github. make sure to follow the CI branching structure of main, staging, dev, and feature. Each new task should be on a separate feature branch, merged with dev when done, and dev to staging to main when deploying.
+The application must be dockerized, runnable on a Docker container. Feel free to use Docker Compose if you see the need to.
+at least 3 unit tests, 2 integration tests, and 1 end-to-end tests are needed. The process of running the tests should be automated as well in your orchestration phase, described below.
+Use Github Workflows (or the equivalent of your version control of choice) for CI/CD pipelining.
+The data pipeline should follow the same logic that we used in class, where your pipeline should be able to automatically process new data and make it available for the model to be trained on whenever it is the time to tune the model on new data.
+The ML training pipeline should be able to run every new interval (the interval is a period that you can specify, where you can say train it once a day for example, or whenever there is new data available, ...). 
+The application deployment automation should take into account the updating of the ML model as well, where it takes the latest version of the trained models, and uses that to be deployed with the new app, whenever it's tile to deploy a new app version.
+Bonuses for adding monitoring for model performance, and application performance.
